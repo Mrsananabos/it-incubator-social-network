@@ -7,27 +7,8 @@
     "h h"
     "n c";
 
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 100px 1fr;
     grid-template-columns: 2fr 10fr;
 }
 
-.header {
-    grid-area: h;
-    background: forestgreen;
-}
 
-.header img{
-    width: 100px;
-    height: 100px;
-
-}
-
-.nav {
-    grid-area: n;
-    background: darkolivegreen;
-}
-
-.content {
-    grid-area: c;
-    background: aqua;
-}
