@@ -1,10 +1,14 @@
 import React from "react";
-import  s from './Post.module.css'
+import s from './Post.module.css'
 
-function Post() {
+export type propsType = {
+    message: string
+}
+
+function Post(props: propsType) {
     return <div className={s.item}>
         <img alt={'ss'} src={'https://cryptor.net/sites/default/files/pictures/picture-425-1516178707.png'}/>
-        Post1
+        {props.message}
         <span> like</span>
     </div>
 }

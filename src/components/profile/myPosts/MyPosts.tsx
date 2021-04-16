@@ -1,19 +1,22 @@
 import React from "react";
 import Post from "./post/Post";
+import s from "./MyPosts.module.css"
 
 function MyPosts() {
-    return <div>
-        My posts
+    return <div className={s.postsBlock}>
+        <h3>My posts</h3>
         <div>
-            <textarea></textarea>
-            <button>Add post</button>
+            <div>
+                <textarea></textarea>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
         </div>
-        <div className={'posts'}>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+        <div className={s.posts}>
+            <Post message='Hi. how are you?'/>
+            <Post message="it's my first post"/>
+            <Post message='Good day!'/>
         </div>
     </div>
 }
