@@ -1,10 +1,13 @@
+import {renderEntireTree} from "../render";
+
 export type StateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
 }
 
 export type profilePageType = {
-    posts: Array<postType>
+    posts: Array<postType>,
+    addPost: (message: string) => void
 }
 
 export type dialogsPageType = {
@@ -36,7 +39,8 @@ let state: StateType = {
             {id: 2, message: 'It\'s my first post', likesCount: 11},
             {id: 3, message: 'Blabla', likesCount: 11},
             {id: 4, message: 'Dada', likesCount: 11}
-        ]
+        ],
+        addPost: addNewPost
     },
     dialogsPage: {
         dialogs: [
@@ -55,6 +59,15 @@ let state: StateType = {
             {id: 5, message: 'Have a nice summer?'}
         ]
     }
+}
+
+function addNewPost(message: string) {
+    state.profilePage.posts.push({
+        id: state.profilePage.posts.length + 1,
+        message,
+        likesCount: 0
+    })
+    renderEntireTree(state);
 }
 
 export default state;
