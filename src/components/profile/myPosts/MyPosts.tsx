@@ -1,8 +1,12 @@
 import React from "react";
 import Post from "./post/Post";
 import s from "./MyPosts.module.css"
+import {profilePageType} from "../../../redux/state";
 
-function MyPosts() {
+function MyPosts(props: profilePageType) {
+    const getPosts = props.posts.map(post => {
+        return <Post post={post}/>
+    })
     return <div className={s.postsBlock}>
         <h3>My posts</h3>
         <div>
@@ -14,9 +18,7 @@ function MyPosts() {
             </div>
         </div>
         <div className={s.posts}>
-            <Post message='Hi. how are you?'/>
-            <Post message="it's my first post"/>
-            <Post message='Good day!'/>
+            {getPosts}
         </div>
     </div>
 }

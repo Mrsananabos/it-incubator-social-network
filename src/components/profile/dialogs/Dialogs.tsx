@@ -1,9 +1,10 @@
 import React from "react";
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
+import {dialogsPageType} from "../../../redux/state";
 
 type PropsDialogItem = {
-    id: string
+    id: number
     userName: string
 }
 
@@ -13,8 +14,8 @@ type PropsMessage = {
 
 const DialogItem = (props: PropsDialogItem) => {
     const path = '/dialogs/' + props.id
-    return <div className={s.item + ' ' + s.active}>
-        <NavLink to={path}>{props.userName}</NavLink>
+    return <div className={s.item}>
+        <NavLink activeClassName={s.active} to={path}>{props.userName}</NavLink>
     </div>
 }
 
@@ -22,19 +23,25 @@ const Message = (props: PropsMessage) => {
     return  <div className={s.message}>{props.text}</div>
 }
 
-function Dialogs() {
+
+
+
+const Dialogs = (state: dialogsPageType) => {
+    const getDialogItem = state.dialogs.map(dialog => {
+        return <DialogItem id={dialog.id} userName={dialog.name}/>
+    })
+    const getMessageItem = state.messages.map(message => {
+        return  <Message text={message.message}/>
+    })
+
     return <div className={s.dialogs}>
         <div className={s.dialogsItems}>
-            <DialogItem id={'1'} userName={'Dmitriy'}/>
-            <DialogItem id={'2'} userName={'Petka'}/>
-            <DialogItem id={'3'} userName={'Kisa'}/>
+            {getDialogItem}
         </div>
         <div className={s.messages}>
-            <Message text={'Hi'}/>
-            <Message text={'How are you?'}/>
-            <Message text={'You like me'}/>
+            {getMessageItem}
         </div>
     </div>
-}
+};
 
 export default Dialogs;

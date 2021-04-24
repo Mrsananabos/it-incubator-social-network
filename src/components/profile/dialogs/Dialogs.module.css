@@ -7,11 +7,11 @@
     padding: 10px;
 }
 
-.item .active{
-    color: green;
+.item a{
+    text-decoration: none;
 }
-.active{
-    color: green;
+ .active{
+    color: deeppink;
 }
 
 .messages {

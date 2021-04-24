@@ -1,15 +1,15 @@
 import React from "react";
+import { postType } from "../../../../redux/state";
 import s from './Post.module.css'
 
-export type propsType = {
-    message: string
+type PropsPost = {
+    post: postType
 }
-
-function Post(props: propsType) {
-    return <div className={s.item}>
+function Post(props: PropsPost) {
+    return <div key={props.post.id} className={s.item}>
         <img alt={'ss'} src={'https://cryptor.net/sites/default/files/pictures/picture-425-1516178707.png'}/>
-        {props.message}
-        <span> like</span>
+        {props.post.message}
+        <span>like</span>{props.post.likesCount}
     </div>
 }
 
