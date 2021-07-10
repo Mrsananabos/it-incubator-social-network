@@ -1,7 +1,7 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
-import {dialogsPageType} from "../../../redux/state";
+import {ActionsTypes, addMessageAC, changeNewMessageAC, DialogsPageType} from "../../../redux/state";
 
 type PropsDialogItem = {
     id: number
@@ -12,6 +12,11 @@ type PropsMessage = {
     text: string
 }
 
+type DialogsPropsType = {
+    dialogsPage: DialogsPageType
+    dispatch: (action: ActionsTypes) => void
+}
+
 const DialogItem = (props: PropsDialogItem) => {
     const path = '/dialogs/' + props.id
     return <div className={s.item}>
@@ -20,18 +25,23 @@ const DialogItem = (props: PropsDialogItem) => {
 }
 
 const Message = (props: PropsMessage) => {
-    return  <div className={s.message}>{props.text}</div>
+    return <div className={s.message}>{props.text}</div>
 }
 
+const Dialogs = (props: DialogsPropsType) => {
+    function onChangeCurrentMessageHandler(e: ChangeEvent<HTMLTextAreaElement>) {
+        props.dispatch(changeNewMessageAC(e.target.value))
+    }
 
+    function onClickAddMessageHandler() {
+        props.dispatch(addMessageAC())
+    }
 
-
-const Dialogs = (state: dialogsPageType) => {
-    const getDialogItem = state.dialogs.map(dialog => {
+    const getDialogItem = props.dialogsPage.dialogs.map(dialog => {
         return <DialogItem id={dialog.id} userName={dialog.name}/>
     })
-    const getMessageItem = state.messages.map(message => {
-        return  <Message text={message.message}/>
+    const getMessageItem = props.dialogsPage.messages.map(message => {
+        return <Message text={message.message}/>
     })
 
     return <div className={s.dialogs}>
@@ -40,6 +50,13 @@ const Dialogs = (state: dialogsPageType) => {
         </div>
         <div className={s.messages}>
             {getMessageItem}
+            <div>
+                <textarea value={props.dialogsPage.newMessageText} onChange={onChangeCurrentMessageHandler}
+                          placeholder={'Enter your message'}></textarea>
+                <div>
+                    <button onClick={onClickAddMessageHandler}>Send Message</button>
+                </div>
+            </div>
         </div>
     </div>
 };
