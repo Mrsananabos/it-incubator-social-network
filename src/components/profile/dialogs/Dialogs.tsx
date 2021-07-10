@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
-import {ActionsTypes, addMessageAC, changeNewMessageAC, DialogsPageType} from "../../../redux/state";
+import {ActionsTypes, addMessageAC, changeNewMessageAC, DialogsPageType} from "../../../redux/store";
 
 type PropsDialogItem = {
     id: number
