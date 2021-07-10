@@ -29,13 +29,24 @@ type messageType = {
     message: string
 }
 
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+
+type AddPostActionType = {
+    type: "ADD-POST"
+}
+
+type ChangeNewTextActionType = {
+    type: "CHANGE-NEW-TEXT"
+    postText: string
+}
+
+
 export type StoreType = {
     _state: StateType,
     getState: () => StateType
     subscribe: (state: any) => void
-    addNewPost: () => void
-    updateNewPostText: (newPostText: string) => void
     _callSubscriber: () => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 
@@ -69,32 +80,31 @@ let store: StoreType = {
         }
     },
     getState() {
-        debugger
         return this._state
     },
     subscribe(observer) {
-        debugger
         this._callSubscriber = observer;
-    },
-    addNewPost() {
-        let currentText = this._state.profilePage.newPostText
-        if (currentText) {
-            this._state.profilePage.posts.push({
-                id: this._state.profilePage.posts.length + 1,
-                message: currentText,
-                likesCount: 0
-            })
-            this._state.profilePage.newPostText = '';
-        }
-        this._callSubscriber();
-    },
-    updateNewPostText(newPostText: string) {
-        debugger
-        this._state.profilePage.newPostText = newPostText
-        this._callSubscriber()
     },
     _callSubscriber() {
         console.log('rerender');
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let currentText = this._state.profilePage.newPostText
+            if (currentText) {
+                this._state.profilePage.posts.push({
+                    id: this._state.profilePage.posts.length + 1,
+                    message: currentText,
+                    likesCount: 0
+                })
+                this._state.profilePage.newPostText = '';
+            }
+            this._callSubscriber();
+
+        } else  if (action.type === 'CHANGE-NEW-TEXT') {
+            this._state.profilePage.newPostText = action.postText
+            this._callSubscriber()
+        }
     }
 }
 

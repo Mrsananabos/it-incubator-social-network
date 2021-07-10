@@ -12,7 +12,6 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
-    debugger
     const state = props.store.getState();
 
     return (
@@ -26,9 +25,7 @@ function App(props: AppPropsType) {
                             messages={state.dialogsPage.messages}
                             dialogs={state.dialogsPage.dialogs}/>}/>
                     <Route path={'/profile'} render={() =>
-                        <Profile profilePageProps={state.profilePage}
-                                 addNewPost={props.store.addNewPost.bind(props.store)}
-                                 updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                        <Profile profilePageProps={state.profilePage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
                 </div>
             </div>
         </BrowserRouter>

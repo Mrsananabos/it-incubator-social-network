@@ -5,7 +5,6 @@ import App from "./App";
 import ReactDOM from 'react-dom';
 
 export let renderEntireTree = (props: StoreType) => {
-    debugger
     return ReactDOM.render(
         <React.StrictMode>
             <App store={props}/>
