@@ -1,5 +1,5 @@
 import React from "react";
-import { PostType } from "../../../../redux/store";
+import { PostType } from "../../../../types/types";
 import s from './Post.module.css'
 
 type PropsPost = {

@@ -1,4 +1,5 @@
-import {ActionsTypes, ProfilePageType} from "./store";
+import {ProfilePageType} from "../types/types";
+import {ActionsTypes} from "../types/dispatchTypes";
 
 let profileInitialState: ProfilePageType = {
     posts: [
@@ -10,7 +11,7 @@ let profileInitialState: ProfilePageType = {
     newPostText: ''
 }
 
-const profileReducer = (profilePage: ProfilePageType  = profileInitialState, action: ActionsTypes): ProfilePageType => {
+const profileReducer = (profilePage: ProfilePageType = profileInitialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
             let currentText = profilePage.newPostText

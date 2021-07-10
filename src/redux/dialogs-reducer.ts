@@ -1,4 +1,5 @@
-import {ActionsTypes, DialogsPageType} from "./store";
+import {ActionsTypes} from "../types/dispatchTypes";
+import {DialogsPageType} from "../types/types";
 
 let dialogsInitialState: DialogsPageType = {
     dialogs: [
@@ -19,7 +20,7 @@ let dialogsInitialState: DialogsPageType = {
     newMessageText: ''
 }
 
-const dialogsReducer = (dialogsPage: DialogsPageType = dialogsInitialState, action: ActionsTypes):DialogsPageType  => {
+const dialogsReducer = (dialogsPage: DialogsPageType = dialogsInitialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             let currentText = dialogsPage.newMessageText
