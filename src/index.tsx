@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
-import store, {StoreType} from "./redux/store";
 import App from "./App";
 import ReactDOM from 'react-dom';
+import store, {StoreType} from "./redux/redux-store";
 
 export let renderEntireTree = (props: StoreType) => {
     return ReactDOM.render(
