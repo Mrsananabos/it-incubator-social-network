@@ -43,9 +43,11 @@ type ChangeNewTextActionType = {
 
 export type StoreType = {
     _state: StateType,
+    _callSubscriber: () => void
+    _addNewPost: () => void
+    _updateNewPostText: (newPostText: string) => void
     getState: () => StateType
     subscribe: (state: any) => void
-    _callSubscriber: () => void
     dispatch: (action: ActionsTypes) => void
 }
 
@@ -79,31 +81,42 @@ let store: StoreType = {
             ]
         }
     },
+    _callSubscriber() {
+        console.log('rerender');
+    },
+    _addNewPost() {
+        let currentText = this._state.profilePage.newPostText
+        if (currentText) {
+            this._state.profilePage.posts.push({
+                id: this._state.profilePage.posts.length + 1,
+                message: currentText,
+                likesCount: 0
+            })
+            this._state.profilePage.newPostText = '';
+        }
+        this._callSubscriber();
+    },
+    _updateNewPostText(newPostText: string) {
+        debugger
+        this._state.profilePage.newPostText = newPostText
+        this._callSubscriber()
+    },
     getState() {
         return this._state
     },
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-    _callSubscriber() {
-        console.log('rerender');
-    },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let currentText = this._state.profilePage.newPostText
-            if (currentText) {
-                this._state.profilePage.posts.push({
-                    id: this._state.profilePage.posts.length + 1,
-                    message: currentText,
-                    likesCount: 0
-                })
-                this._state.profilePage.newPostText = '';
-            }
-            this._callSubscriber();
-
-        } else  if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.profilePage.newPostText = action.postText
-            this._callSubscriber()
+        switch (action.type) {
+            case "ADD-POST":
+                this._addNewPost()
+                break
+            case "CHANGE-NEW-TEXT":
+                this._updateNewPostText(action.postText)
+                break
+            default:
+                break
         }
     }
 }
