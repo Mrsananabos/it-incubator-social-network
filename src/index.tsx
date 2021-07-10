@@ -1,6 +1,19 @@
 import React from 'react';
 import './index.css';
-import state from "./redux/state";
-import {renderEntireTree} from "./render";
+import store, {StoreType} from "./redux/state";
+import App from "./App";
+import ReactDOM from 'react-dom';
 
-renderEntireTree(state);
+export let renderEntireTree = (props: StoreType) => {
+    debugger
+    return ReactDOM.render(
+        <React.StrictMode>
+            <App store={props}/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+renderEntireTree(store);
+
+store.subscribe(() => renderEntireTree(store))
+

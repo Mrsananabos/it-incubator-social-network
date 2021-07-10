@@ -1,18 +1,23 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import Post from "./post/Post";
 import s from "./MyPosts.module.css"
-import {profilePageType} from "../../../redux/state";
+import {postType} from "../../../redux/state";
 
-function MyPosts(props: profilePageType) {
-    let[currentText, setCurrentText] = useState('');
+type MyPostsPropsType = {
+    posts: Array<postType>
+    newPostText: string
+    addNewPost: () => void
+    updateNewPostText: (newPostText: string) => void
+}
 
+function MyPosts(props: MyPostsPropsType) {
     function onChangeCurrentTextHandler(e: ChangeEvent<HTMLTextAreaElement>) {
-        setCurrentText(e.target.value)
+        props.updateNewPostText(e.target.value)
     }
 
     function onClickAddPostHandler() {
-        props.addPost(currentText);
-        setCurrentText('')
+        props.addNewPost()
+        props.updateNewPostText('')
     }
 
     const getPosts = props.posts.map(post => {
@@ -22,7 +27,7 @@ function MyPosts(props: profilePageType) {
         <h3>My posts</h3>
         <div>
             <div>
-                <textarea onChange={(e) => onChangeCurrentTextHandler(e)}>{currentText}</textarea>
+                <textarea onChange={(e) => onChangeCurrentTextHandler(e)} value={props.newPostText}/>
             </div>
             <div>
                 <button onClick={onClickAddPostHandler}>Add post</button>
