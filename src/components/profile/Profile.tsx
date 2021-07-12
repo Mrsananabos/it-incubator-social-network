@@ -1,9 +1,9 @@
 import React from "react";
 import s from './Profile.module.css';
-import MyPosts from "./myPosts/MyPosts";
 import ProfileInfo from "./profileInfo/ProfileInfo";
 import {ProfilePageType} from "../../types/types";
 import {ActionsTypes} from "../../types/dispatchTypes";
+import MyPostsContainer from "./myPosts/MyPostsContainer";
 
 type ProfilePropsType = {
     profilePageProps: ProfilePageType,
@@ -13,8 +13,7 @@ type ProfilePropsType = {
 function Profile(props: ProfilePropsType) {
     return <div className={s.content}>
         <ProfileInfo/>
-        <MyPosts posts={props.profilePageProps.posts} newPostText={props.profilePageProps.newPostText}
-                 dispatch={props.dispatch}/>
+        <MyPostsContainer dispatch={props.dispatch} profilePageProps={props.profilePageProps}/>
     </div>
 }
 

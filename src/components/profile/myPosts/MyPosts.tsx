@@ -2,21 +2,21 @@ import React, {ChangeEvent} from "react";
 import Post from "./post/Post";
 import s from "./MyPosts.module.css"
 import {PostType} from "../../../types/types";
-import {ActionsTypes, addPostAC, changeNewTextAC} from "../../../types/dispatchTypes";
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    updateNePostText: (postText: string) => void
+    addPost: () => void
 }
 
 function MyPosts(props: MyPostsPropsType) {
     function onChangeCurrentTextHandler(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.dispatch(changeNewTextAC(e.target.value))
+        props.updateNePostText(e.target.value)
     }
 
     function onClickAddPostHandler() {
-        props.dispatch(addPostAC())
+        props.addPost()
     }
 
     const getPosts = props.posts.map(post => {
