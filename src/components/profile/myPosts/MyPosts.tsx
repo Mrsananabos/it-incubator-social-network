@@ -6,13 +6,13 @@ import {PostType} from "../../../types/types";
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    updateNePostText: (postText: string) => void
+    updateNewPostText: (postText: string) => void
     addPost: () => void
 }
 
 function MyPosts(props: MyPostsPropsType) {
     function onChangeCurrentTextHandler(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.updateNePostText(e.target.value)
+        props.updateNewPostText(e.target.value)
     }
 
     function onClickAddPostHandler() {
@@ -22,6 +22,8 @@ function MyPosts(props: MyPostsPropsType) {
     const getPosts = props.posts.map(post => {
         return <Post post={post}/>
     })
+
+    debugger
     return <div className={s.postsBlock}>
         <h3>My posts</h3>
         <div>

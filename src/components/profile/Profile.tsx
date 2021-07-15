@@ -13,7 +13,7 @@ type ProfilePropsType = {
 function Profile(props: ProfilePropsType) {
     return <div className={s.content}>
         <ProfileInfo/>
-        <MyPostsContainer dispatch={props.dispatch} profilePageProps={props.profilePageProps}/>
+        <MyPostsContainer/>
     </div>
 }
 

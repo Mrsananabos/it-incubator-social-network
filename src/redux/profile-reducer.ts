@@ -12,6 +12,7 @@ let profileInitialState: ProfilePageType = {
 }
 
 const profileReducer = (profilePage: ProfilePageType = profileInitialState, action: ActionsTypes): ProfilePageType => {
+    debugger
     switch (action.type) {
         case "ADD-POST":
             let currentText = profilePage.newPostText
