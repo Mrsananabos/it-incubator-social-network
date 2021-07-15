@@ -20,26 +20,26 @@ let dialogsInitialState: DialogsPageType = {
     newMessageText: ''
 }
 
-const dialogsReducer = (dialogsPage: DialogsPageType = dialogsInitialState, action: ActionsTypes): DialogsPageType => {
+const dialogsReducer = (state: DialogsPageType = dialogsInitialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE":
-            if (dialogsPage.newMessageText.trim() !== '') {
+            if (state.newMessageText.trim() !== '') {
                 const newMessage: MessageType = {
-                    id: dialogsPage.dialogs.length + 1,
-                    message: dialogsPage.newMessageText
+                    id: state.dialogs.length + 1,
+                    message: state.newMessageText
                 }
                 return {
-                    ...dialogsPage,
-                    messages: [...dialogsPage.messages, newMessage],
+                    ...state,
+                    messages: [...state.messages, newMessage],
                     newMessageText: ''
                 }
             } else {
-                return dialogsPage;
+                return state;
             }
         case "CHANGE-NEW-MESSAGE":
-            return {...dialogsPage, newMessageText: action.messageText}
+            return {...state, newMessageText: action.messageText}
         default:
-            return dialogsPage
+            return state
     }
 }
 

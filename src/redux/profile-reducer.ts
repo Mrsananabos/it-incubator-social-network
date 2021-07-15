@@ -11,28 +11,28 @@ let profileInitialState: ProfilePageType = {
     newPostText: ''
 }
 
-const profileReducer = (profilePage: ProfilePageType = profileInitialState, action: ActionsTypes): ProfilePageType => {
+const profileReducer = (state: ProfilePageType = profileInitialState, action: ActionsTypes): ProfilePageType => {
     debugger
     switch (action.type) {
         case "ADD-POST":
-            if (profilePage.newPostText.trim() !== '') {
+            if (state.newPostText.trim() !== '') {
                 const newPost: PostType = {
-                    id: profilePage.posts.length + 1,
-                    message: profilePage.newPostText,
+                    id: state.posts.length + 1,
+                    message: state.newPostText,
                     likesCount: 0
                 }
                 return {
-                    ...profilePage,
-                    posts: [...profilePage.posts, newPost],
+                    ...state,
+                    posts: [...state.posts, newPost],
                     newPostText: ''
                 }
             } else {
-                return profilePage
+                return state
             }
         case "CHANGE-NEW-TEXT":
-            return {...profilePage, newPostText: action.postText}
+            return {...state, newPostText: action.postText}
         default:
-            return profilePage
+            return state
     }
 }
 
