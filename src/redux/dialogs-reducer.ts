@@ -1,5 +1,5 @@
 import {ActionsTypes} from "../types/dispatchTypes";
-import {DialogsPageType} from "../types/types";
+import {DialogsPageType, MessageType} from "../types/types";
 
 let dialogsInitialState: DialogsPageType = {
     dialogs: [
@@ -23,18 +23,21 @@ let dialogsInitialState: DialogsPageType = {
 const dialogsReducer = (dialogsPage: DialogsPageType = dialogsInitialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE":
-            let currentText = dialogsPage.newMessageText
-            if (currentText) {
-                dialogsPage.messages.push({
-                    id: dialogsPage.messages.length + 1,
-                    message: currentText
-                })
-                dialogsPage.newMessageText = '';
+            if (dialogsPage.newMessageText.trim() !== '') {
+                const newMessage: MessageType = {
+                    id: dialogsPage.dialogs.length + 1,
+                    message: dialogsPage.newMessageText
+                }
+                return {
+                    ...dialogsPage,
+                    messages: [...dialogsPage.messages, newMessage],
+                    newMessageText: ''
+                }
+            } else {
+                return dialogsPage;
             }
-            return dialogsPage;
         case "CHANGE-NEW-MESSAGE":
-            dialogsPage.newMessageText = action.messageText
-            return dialogsPage
+            return {...dialogsPage, newMessageText: action.messageText}
         default:
             return dialogsPage
     }
