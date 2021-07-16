@@ -1,7 +1,7 @@
-import {PostType, ProfilePageType} from "../types/types";
+import {PostType, ProfilePageDataType} from "../types/types";
 import {ActionsTypes} from "../types/dispatchTypes";
 
-let profileInitialState: ProfilePageType = {
+let profileInitialState: ProfilePageDataType = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'It\'s my first post', likesCount: 11},
@@ -11,8 +11,7 @@ let profileInitialState: ProfilePageType = {
     newPostText: ''
 }
 
-const profileReducer = (state: ProfilePageType = profileInitialState, action: ActionsTypes): ProfilePageType => {
-    debugger
+const profileReducer = (state: ProfilePageDataType = profileInitialState, action: ActionsTypes): ProfilePageDataType => {
     switch (action.type) {
         case "ADD-POST":
             if (state.newPostText.trim() !== '') {

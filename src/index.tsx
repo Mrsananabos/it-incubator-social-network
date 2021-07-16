@@ -6,10 +6,9 @@ import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 
 export let renderEntireTree = () => {
-    debugger
     return ReactDOM.render(
         <Provider store={store}>
-            <App store={store}/>
+            <App/>
         </Provider>,
         document.getElementById('root')
     );

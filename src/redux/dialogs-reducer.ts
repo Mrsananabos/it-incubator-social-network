@@ -1,7 +1,7 @@
 import {ActionsTypes} from "../types/dispatchTypes";
-import {DialogsPageType, MessageType} from "../types/types";
+import {DialogsPageDataType, MessageType} from "../types/types";
 
-let dialogsInitialState: DialogsPageType = {
+let dialogsInitialState: DialogsPageDataType = {
     dialogs: [
         {id: 1, name: 'Dimych'},
         {id: 2, name: 'Andrew'},
@@ -20,7 +20,7 @@ let dialogsInitialState: DialogsPageType = {
     newMessageText: ''
 }
 
-const dialogsReducer = (state: DialogsPageType = dialogsInitialState, action: ActionsTypes): DialogsPageType => {
+const dialogsReducer = (state: DialogsPageDataType = dialogsInitialState, action: ActionsTypes): DialogsPageDataType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             if (state.newMessageText.trim() !== '') {

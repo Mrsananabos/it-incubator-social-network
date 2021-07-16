@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
-import {DialogsPageType} from "../../../types/types";
+import {DialogsPageDataType} from "../../../types/types";
 
 type PropsDialogItem = {
     id: number
@@ -13,7 +13,7 @@ type PropsMessage = {
 }
 
 type DialogsPropsType = {
-    dialogsPage: DialogsPageType
+    dialogsPage: DialogsPageDataType
     addNewMessage: () => void
     updateNewMessageText: (newMessage: string) => void
 }

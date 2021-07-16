@@ -23,7 +23,6 @@ function MyPosts(props: MyPostsPropsType) {
         return <Post post={post}/>
     })
 
-    debugger
     return <div className={s.postsBlock}>
         <h3>My posts</h3>
         <div>
