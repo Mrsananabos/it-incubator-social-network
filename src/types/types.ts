@@ -44,5 +44,6 @@ export type UsersPageDataType = {
     items: UserType[],
     pageSize: number,
     totalUsersCount: number,
-    currentPage: number
+    currentPage: number,
+    isFetching: boolean
 }

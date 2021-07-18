@@ -6,6 +6,7 @@ const initialState: UsersPageDataType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: true
 }
 
 const usersReducer = (state: UsersPageDataType = initialState, action: ActionsTypes): UsersPageDataType => {
@@ -20,6 +21,9 @@ const usersReducer = (state: UsersPageDataType = initialState, action: ActionsTy
             return {...state, totalUsersCount: action.count}
         case "SET-CURRENT_PAGE":
             return {...state, currentPage: action.currentPage}
+        case "SET-FETCHING":
+            debugger
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }

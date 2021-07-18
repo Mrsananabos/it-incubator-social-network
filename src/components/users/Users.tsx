@@ -8,10 +8,12 @@ export type UsersProps = {
     pageSize: number,
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
     setUsers: (users: UserType[]) => void
     setTotalUsersCount: (count: number) => void
     setCurrentPage: (currentPage: number) => void
     onPageChanged: (currentPage: number) => void
+    setFetching: (isFetching: boolean) => void
 }
 
 function Users(props: UsersProps) {
