@@ -1,11 +1,13 @@
 import {connect} from "react-redux";
-import Users from "./Users";
+import Users from "./UsersClass";
 import {AppDispatchType, AppStateType} from "../../redux/redux-store";
 import {UserType} from "../../types/types";
 import {setUsersAC} from "../../types/dispatchTypes";
 
 const mapStateToProps = (state: AppStateType) => {
-    return {}
+    return {
+        users: state.usersReducer.items
+    }
 }
 
 const mapDispatchToProps = (dispatch: AppDispatchType) => {

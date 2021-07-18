@@ -6,6 +6,7 @@ import {BrowserRouter, Route} from "react-router-dom"
 import Profile from './components/profile/Profile';
 import DialogsContainer from "./components/profile/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
+import Users from "./components/users/Users";
 
 function App() {
     return (
