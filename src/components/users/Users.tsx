@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import {UserType} from "../../types/types";
 import userIcon from '../../assets/images/userIcon.png'
+import s from "./Users.module.css";
 
 export type UsersProps = {
     users: UserType[],
@@ -11,16 +11,18 @@ export type UsersProps = {
     setUsers: (users: UserType[]) => void
     setTotalUsersCount: (count: number) => void
     setCurrentPage: (currentPage: number) => void
+    onPageChanged: (currentPage: number) => void
 }
 
 function Users(props: UsersProps) {
-    debugger
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => props.setUsers(response.data.items))
+    const pagesCount = props.totalUsersCount / props.pageSize
+
+    const numPages = []
+    for (let i = 1; i <= 10; i++) {
+        numPages.push(i)
     }
 
-    const s = props.users.map(u => {
+    const users = props.users.map(u => {
         return <span>
             <div>
                 <img src={u.photos.small != null ? u.photos.small : userIcon} width="65" height="65"/>
@@ -31,11 +33,18 @@ function Users(props: UsersProps) {
             {u.name}
         </span>
     })
-    return (
-        <div>
-            {s}
-        </div>
 
+    return (
+        <>
+            <div>
+                {numPages.map(num => <span className={num === props.currentPage ? s.selectedPage : ''}
+                                           onClick={() => props.onPageChanged(num)}>{`${num} `}</span>)}
+            </div>
+
+            <div>
+                {users}
+            </div>
+        </>
     )
 }
 

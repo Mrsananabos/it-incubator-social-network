@@ -43,7 +43,7 @@ export const setTotalUsersCountAC = (count: number) => {
     } as const
 }
 
-export const setCurrentPage = (currentPage: number) => {
+export const setCurrentPageAC = (currentPage: number) => {
     return {
         type: "SET-CURRENT_PAGE",
         currentPage
@@ -56,4 +56,4 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setCurrentPageAC>
