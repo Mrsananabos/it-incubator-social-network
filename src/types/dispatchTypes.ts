@@ -28,11 +28,25 @@ export const changeNewMessageAC = (newMessageText: string) => {
     } as const
 }
 
-//--------------------------------UsersPageDaraType
+//--------------------------------UsersPageDataType
 export const setUsersAC = (users: UserType[]) => {
     return {
         type: "SET-USERS",
         items: users
+    } as const
+}
+
+export const setTotalUsersCountAC = (count: number) => {
+    return {
+        type: "SET-TOTAL-USERS-COUNT",
+        count
+    } as const
+}
+
+export const setCurrentPage = (currentPage: number) => {
+    return {
+        type: "SET-CURRENT_PAGE",
+        currentPage
     } as const
 }
 
@@ -41,3 +55,5 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof changeNewMessageAC>
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setTotalUsersCountAC>
+    | ReturnType<typeof setCurrentPage>

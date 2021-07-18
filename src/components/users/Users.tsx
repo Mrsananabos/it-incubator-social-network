@@ -5,7 +5,12 @@ import userIcon from '../../assets/images/userIcon.png'
 
 export type UsersProps = {
     users: UserType[],
+    pageSize: number,
+    totalUsersCount: number
+    currentPage: number
     setUsers: (users: UserType[]) => void
+    setTotalUsersCount: (count: number) => void
+    setCurrentPage: (currentPage: number) => void
 }
 
 function Users(props: UsersProps) {
