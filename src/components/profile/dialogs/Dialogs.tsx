@@ -15,7 +15,7 @@ type PropsMessage = {
 type DialogsPropsType = {
     dialogsPage: DialogsPageDataType
     addNewMessage: () => void
-    updateNewMessageText: (newMessage: string) => void
+    changeNewMessage: (newMessage: string) => void
 }
 
 const DialogItem = (props: PropsDialogItem) => {
@@ -31,7 +31,7 @@ const Message = (props: PropsMessage) => {
 
 const Dialogs = (props: DialogsPropsType) => {
         function onChangeCurrentMessageHandler(e: ChangeEvent<HTMLTextAreaElement>) {
-            props.updateNewMessageText(e.target.value)
+            props.changeNewMessage(e.target.value)
         }
 
         function onClickAddMessageHandler() {

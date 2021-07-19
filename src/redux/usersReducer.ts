@@ -12,7 +12,6 @@ const initialState: UsersPageDataType = {
 const usersReducer = (state: UsersPageDataType = initialState, action: ActionsTypes): UsersPageDataType => {
     switch (action.type) {
         case "SET-USERS":
-            debugger
             return {
                 ...state,
                 items: [...action.items]
@@ -22,7 +21,6 @@ const usersReducer = (state: UsersPageDataType = initialState, action: ActionsTy
         case "SET-CURRENT_PAGE":
             return {...state, currentPage: action.currentPage}
         case "SET-FETCHING":
-            debugger
             return {...state, isFetching: action.isFetching}
         default:
             return state;

@@ -8,7 +8,8 @@ let profileInitialState: ProfilePageDataType = {
         {id: 3, message: 'Blabla', likesCount: 11},
         {id: 4, message: 'Dada', likesCount: 11}
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 
 const profileReducer = (state: ProfilePageDataType = profileInitialState, action: ActionsTypes): ProfilePageDataType => {
@@ -30,6 +31,9 @@ const profileReducer = (state: ProfilePageDataType = profileInitialState, action
             }
         case "CHANGE-NEW-TEXT":
             return {...state, newPostText: action.postText}
+        case "SET-USER-PROFILE": {
+            return {...state, profile: action.profile}
+        }
         default:
             return state
     }

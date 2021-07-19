@@ -1,11 +1,10 @@
 import {connect, ConnectedProps} from "react-redux";
-import {AppDispatchType, AppStateType} from "../../redux/redux-store";
-import {UserType} from "../../types/types";
+import {AppStateType} from "../../redux/redux-store";
 import {setCurrentPage, setFetching, setTotalUsersCount, setUsers} from "../../types/dispatchTypes";
 import React from "react";
 import Users from "./Users";
 import axios from "axios";
-import preloader from '../../assets/images/Circle-Loading.svg'
+import Preloader from "../../common/Preloader";
 
 class UsersContainer extends React.Component<UsersContainerProps> {
 
@@ -38,7 +37,7 @@ class UsersContainer extends React.Component<UsersContainerProps> {
 
     render() {
         return <>
-            {this.props.isFetching ? <img src={preloader}/> : ''}
+            {this.props.isFetching ? <Preloader/> : ''}
             <Users
                 users={this.props.users}
                 pageSize={this.props.pageSize}

@@ -1,5 +1,5 @@
 import React from "react";
-import {addPostAC, changeNewTextAC} from "../../../types/dispatchTypes";
+import {addPost, changeNewText} from "../../../types/dispatchTypes";
 import MyPosts from "./MyPosts";
 import {AppDispatchType, AppStateType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
@@ -13,8 +13,8 @@ const mapStateToProps = (state: AppStateType) => {
 
 const mapDispatchToProps = (dispatch: AppDispatchType) => {
     return {
-        addPost: () => dispatch(addPostAC()),
-        updateNewPostText: (postText: string) => dispatch(changeNewTextAC(postText))
+        addPost: () => dispatch(addPost()),
+        updateNewPostText: (postText: string) => dispatch(changeNewText(postText))
     }
 }
 

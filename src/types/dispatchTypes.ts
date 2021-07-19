@@ -1,27 +1,34 @@
-import {UserType} from "./types"
+import {ProfileInfoType, UserType} from "./types"
 
-//--------------------------------PostPageDataType
-export const addPostAC = () => {
+//--------------------------------ProfilePageDataType
+export const addPost = () => {
     return {
         type: "ADD-POST"
     } as const
 }
 
-export const changeNewTextAC = (newPostText: string) => {
+export const changeNewText = (newPostText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         postText: newPostText
     } as const
 }
 
+export const setUserProfile = (profile: ProfileInfoType) => {
+    return {
+        type: "SET-USER-PROFILE",
+        profile
+    } as const
+}
+
 //--------------------------------DialogsPageDataType
-export const addMessageAC = () => {
+export const addNewMessage = () => {
     return {
         type: "ADD-MESSAGE"
     } as const
 }
 
-export const changeNewMessageAC = (newMessageText: string) => {
+export const changeNewMessage = (newMessageText: string) => {
     return {
         type: "CHANGE-NEW-MESSAGE",
         messageText: newMessageText
@@ -57,12 +64,13 @@ export const setFetching = (isFetching: boolean) => {
     } as const
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC>
-    | ReturnType<typeof changeNewTextAC>
-    | ReturnType<typeof changeNewMessageAC>
-    | ReturnType<typeof addMessageAC>
+export type ActionsTypes = ReturnType<typeof addPost>
+    | ReturnType<typeof changeNewText>
+    | ReturnType<typeof changeNewMessage>
+    | ReturnType<typeof addNewMessage>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setFetching>
+    | ReturnType<typeof setUserProfile>
 
