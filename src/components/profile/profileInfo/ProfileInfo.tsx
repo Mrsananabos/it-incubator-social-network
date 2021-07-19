@@ -10,13 +10,16 @@ function ProfileInfo(props: ProfileProps) {
     }
 
     let avaPath = props.profile.photos.large
+    let fullName = props.profile.fullName
+    let descUser = props.profile.aboutMe
     return <div>
         <img
             src={'https://www.rgo.ru/sites/default/files/styles/head_image_article/public/odna_iz_konkursnyh_rabot_2011_goda._ogonkovyy_miting._v.a._masoshin.jpg?itok=xsNrqUux'}></img>
         <div className={s.descBlock}>
 
             <img src={avaPath ? avaPath : userIcon}/>
-            <div>ava + desc</div>
+            <div>{fullName}</div>
+            <div>About me: {descUser ? descUser : 'is empty :('}</div>
         </div>
     </div>
 }

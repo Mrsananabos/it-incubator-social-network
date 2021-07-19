@@ -13,6 +13,7 @@ export type ProfilePageDataType = {
 
 export type ProfileInfoType = {
     userId: number
+    aboutMe: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
