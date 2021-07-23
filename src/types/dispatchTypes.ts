@@ -64,6 +64,18 @@ export const setFetching = (isFetching: boolean) => {
     } as const
 }
 
+//--------------------------------------Auth
+export const setAuthUserData = (id: string, login: string, email: string) => {
+    return {
+        type:  "SET-USER-DATA",
+        data: {
+            id,
+            login,
+            email
+        }
+    } as const
+}
+
 export type ActionsTypes = ReturnType<typeof addPost>
     | ReturnType<typeof changeNewText>
     | ReturnType<typeof changeNewMessage>
@@ -73,4 +85,5 @@ export type ActionsTypes = ReturnType<typeof addPost>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setFetching>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserData>
 

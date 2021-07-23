@@ -70,3 +70,17 @@ export type UsersPageDataType = {
     currentPage: number,
     isFetching: boolean
 }
+
+//--------------------------------------Auth
+export type AuthType = {
+    data:
+        {
+            id: number,
+            login: string,
+            email: string,
+        },
+    isAuth: boolean
+    messages: string[],
+    fieldsErrors: string[],
+    resultCode: number,
+}

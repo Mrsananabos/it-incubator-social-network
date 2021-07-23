@@ -2,11 +2,13 @@ import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./usersReducer";
+import {authReducer} from "./auth-reducer";
 
 let reducers = combineReducers({
     profileReducer,
     dialogsReducer,
-    usersReducer
+    usersReducer,
+    authReducer
 })
 
 export type AppStateType = ReturnType<typeof store.getState>;

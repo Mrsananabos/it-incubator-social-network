@@ -29,7 +29,7 @@ function Users(props: UsersProps) {
         return <span>
             <div>
                 <NavLink to={`/profile/${u.id}`}>
-                     <img src={u.photos.small != null ? u.photos.small : userIcon} width="65" height="65"/>
+                     <img className={s.img} src={u.photos.small != null ? u.photos.small : userIcon} width="65" height="65"/>
                 </NavLink>
             </div>
             <div>
