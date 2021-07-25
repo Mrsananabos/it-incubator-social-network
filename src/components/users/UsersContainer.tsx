@@ -1,6 +1,6 @@
 import {connect, ConnectedProps} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {setCurrentPage, setFetching, setTotalUsersCount, setUsers} from "../../types/dispatchTypes";
+import {unfollow, follow, setCurrentPage, setFetching, setTotalUsersCount, setUsers} from '../../types/dispatchTypes'
 import React from "react";
 import Users from "./Users";
 import axios from "axios";
@@ -26,7 +26,10 @@ class UsersContainer extends React.Component<UsersContainerProps> {
         // @ts-ignore
         this.setFetching(true)
         // @ts-ignore
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.pageSize}`, {
+            withCredentials: true
+          }
+        )
             .then(response => {
                 // @ts-ignore
                 this.setFetching(false)
@@ -47,6 +50,8 @@ class UsersContainer extends React.Component<UsersContainerProps> {
                 setUsers={this.props.setUsers}
                 setTotalUsersCount={this.props.setTotalUsersCount}
                 setCurrentPage={this.props.setCurrentPage}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
                 onPageChanged={this.onPageChanged} setFetching={this.props.setFetching}/></>
     }
 }
@@ -66,7 +71,9 @@ const connector = connect(mapStateToProps, {
     setTotalUsersCount,
     setCurrentPage,
     onPageChanged: () => console.log(''),
-    setFetching
+    setFetching,
+    follow,
+    unfollow
 })
 
 type UsersContainerProps = ConnectedProps<typeof connector>;

@@ -22,6 +22,10 @@ const usersReducer = (state: UsersPageDataType = initialState, action: ActionsTy
             return {...state, currentPage: action.currentPage}
         case "SET-FETCHING":
             return {...state, isFetching: action.isFetching}
+        case "FOLLOW":
+            return {...state, items: state.items.map(u => u.id === action.userId ? {...u, followed: true} : u)}
+        case "UNFOLLOW":
+            return {...state, items: state.items.map(u => u.id === action.userId ? {...u, followed: false} : u)}
         default:
             return state;
     }

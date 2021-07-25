@@ -64,6 +64,20 @@ export const setFetching = (isFetching: boolean) => {
     } as const
 }
 
+export const follow = (userId: number) => {
+    return {
+        type: "FOLLOW",
+        userId
+    } as const
+}
+
+export const unfollow = (userId: number) => {
+    return {
+        type: "UNFOLLOW",
+        userId
+    } as const
+}
+
 //--------------------------------------Auth
 export const setAuthUserData = (id: string, login: string, email: string) => {
     return {
@@ -86,4 +100,6 @@ export type ActionsTypes = ReturnType<typeof addPost>
     | ReturnType<typeof setFetching>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
 
