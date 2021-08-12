@@ -68,7 +68,8 @@ export type UsersPageDataType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: number[]
 }
 
 //--------------------------------------Auth

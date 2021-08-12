@@ -64,6 +64,14 @@ export const setFetching = (isFetching: boolean) => {
     } as const
 }
 
+export const setFollowingInProgress = (followingInProgress: boolean, userId: number) => {
+    return {
+        type: "SET-FOLLOWING-IN-PROGRESS",
+        followingInProgress,
+        userId
+    } as const
+}
+
 export const follow = (userId: number) => {
     return {
         type: "FOLLOW",
@@ -102,4 +110,5 @@ export type ActionsTypes = ReturnType<typeof addPost>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
+    | ReturnType<typeof setFollowingInProgress>
 
