@@ -1,18 +1,14 @@
 import React from "react";
 import {connect, ConnectedProps} from "react-redux";
-import {setUserProfile} from "../../types/dispatchTypes";
 import {AppStateType} from "../../redux/redux-store";
 import Profile from "./Profile";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {usersAPI} from "../../api/api";
+import {getUserProfileTC} from "../../redux/profile-reducer";
 
 class ProfileContainer extends React.Component<ProfileContainerWithRoutePropsType> {
     componentDidMount() {
         const userId = this.props.match.params.userId;
-        usersAPI.getProfile(userId)
-            .then(response => {
-                this.props.setUserProfile(response)
-            })
+        this.props.getUserProfileTC(userId)
     }
 
     render() {
@@ -29,5 +25,5 @@ type ProfileContainerProps = ConnectedProps<typeof connector>;
 type PathParamsType = { userId: string }
 type ProfileContainerWithRoutePropsType = RouteComponentProps<PathParamsType> & ProfileContainerProps
 const WithUrlDataProfileContainer = withRouter(ProfileContainer);
-const connector = connect(mapStateToProps, {setUserProfile})
+const connector = connect(mapStateToProps, {getUserProfileTC})
 export default connector(WithUrlDataProfileContainer)

@@ -1,5 +1,7 @@
 import {PostType, ProfilePageDataType} from "../types/types";
-import {ActionsTypes} from "../types/dispatchTypes";
+import {ActionsTypes, setUserProfile} from "../types/dispatchTypes";
+import {AppDispatchType} from "./redux-store";
+import {usersAPI} from "../api/api";
 
 let profileInitialState: ProfilePageDataType = {
     posts: [
@@ -40,3 +42,11 @@ const profileReducer = (state: ProfilePageDataType = profileInitialState, action
 }
 
 export default profileReducer
+
+export const getUserProfileTC = (userId: string) => (dispatch: AppDispatchType) => {
+    userId = userId ? userId : '2';
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response))
+        })
+}
