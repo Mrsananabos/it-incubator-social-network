@@ -4,6 +4,8 @@ import {AppStateType} from "../../redux/redux-store";
 import Profile from "./Profile";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {getUserProfileTC} from "../../redux/profile-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import Dialogs from "./dialogs/Dialogs";
 
 class ProfileContainer extends React.Component<ProfileContainerWithRoutePropsType> {
     componentDidMount() {
@@ -24,6 +26,6 @@ const mapStateToProps = (state: AppStateType) => {
 type ProfileContainerProps = ConnectedProps<typeof connector>;
 type PathParamsType = { userId: string }
 type ProfileContainerWithRoutePropsType = RouteComponentProps<PathParamsType> & ProfileContainerProps
-const WithUrlDataProfileContainer = withRouter(ProfileContainer);
+const WithUrlDataProfileContainer = withAuthRedirect(withRouter(ProfileContainer));
 const connector = connect(mapStateToProps, {getUserProfileTC})
 export default connector(WithUrlDataProfileContainer)
