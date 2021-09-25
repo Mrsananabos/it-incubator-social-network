@@ -44,6 +44,7 @@ const profileReducer = (state: ProfilePageDataType = profileInitialState, action
 export default profileReducer
 
 export const getUserProfileTC = (userId: string) => (dispatch: AppDispatchType) => {
+    debugger
     userId = userId ? userId : '2';
     usersAPI.getProfile(userId)
         .then(response => {

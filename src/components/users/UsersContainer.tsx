@@ -10,6 +10,8 @@ import {
     pageChangerThunkCreator,
     unfollowUserThunkCreator
 } from "../../redux/users-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component<UsersContainerProps> {
 
@@ -63,7 +65,10 @@ const connector = connect(mapStateToProps, {
 })
 
 type UsersContainerProps = ConnectedProps<typeof connector>;
-export default connector(UsersContainer)
+export default compose<React.ComponentType>(
+    connector,
+    withAuthRedirect,
+)(UsersContainer)
 
 
 
