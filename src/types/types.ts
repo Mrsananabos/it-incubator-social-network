@@ -8,7 +8,9 @@ export type PostType = {
 export type ProfilePageDataType = {
     posts: Array<PostType>
     newPostText: string
-    profile: ProfileInfoType | null
+    profile: ProfileInfoType | null,
+    status: string,
+    userId?: string
 }
 
 export type ProfileInfoType = {

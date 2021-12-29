@@ -21,6 +21,20 @@ export const setUserProfile = (profile: ProfileInfoType) => {
     } as const
 }
 
+export const setUserStatus = (status: string) => {
+    return {
+        type: "SET-USER-STATUS",
+        status
+    } as const
+}
+
+export const setUserId = (userId: string) => {
+    return {
+        type: "SET-USER-ID",
+        userId
+    } as const
+}
+
 //--------------------------------DialogsPageDataType
 export const addNewMessage = () => {
     return {
@@ -89,7 +103,7 @@ export const unfollow = (userId: number) => {
 //--------------------------------------Auth
 export const setAuthUserData = (id: string, login: string, email: string) => {
     return {
-        type:  "SET-USER-DATA",
+        type: "SET-USER-DATA",
         data: {
             id,
             login,
@@ -111,4 +125,6 @@ export type ActionsTypes = ReturnType<typeof addPost>
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
     | ReturnType<typeof setFollowingInProgress>
+    | ReturnType<typeof setUserStatus>
+    | ReturnType<typeof setUserId>
 

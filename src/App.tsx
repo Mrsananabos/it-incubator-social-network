@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Navbar from "./components/navbar/Navbar";
+import NavbarContainer from "./components/navbar/NavbarContainer";
 import {BrowserRouter, Route} from "react-router-dom"
 import DialogsContainer from "./components/profile/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
@@ -14,10 +14,10 @@ function App() {
         <BrowserRouter>
             <div className={'app-wrapper'}>
                 <HeaderContainer/>
-                <Navbar/>
+                <NavbarContainer/>
                 <div className={'app-wrapper-content'}>
                     <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
-                    <Route path={'/profile/:userId'} render={() => <ProfileContainer/>}/>
+                    <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
                     <Route path={'/users'} render={() => <UsersContainer/>}/>
                     <Route path={'/login'} render={() => <Login/>}/>
                 </div>

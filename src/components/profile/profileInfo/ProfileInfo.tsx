@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css'
 import {ProfileProps} from "../Profile";
 import Preloader from "../../../common/Preloader";
 import userIcon from "../../../assets/images/userIcon.png"
+import ProfileStatus from "./ProfileStatus";
 
 function ProfileInfo(props: ProfileProps) {
     if (!props.profile) {
@@ -16,10 +17,9 @@ function ProfileInfo(props: ProfileProps) {
         <img
             src={'https://www.rgo.ru/sites/default/files/styles/head_image_article/public/odna_iz_konkursnyh_rabot_2011_goda._ogonkovyy_miting._v.a._masoshin.jpg?itok=xsNrqUux'}></img>
         <div className={s.descBlock}>
-
             <img src={avaPath ? avaPath : userIcon}/>
             <div>{fullName}</div>
-            <div>About me: {descUser ? descUser : 'is empty :('}</div>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
     </div>
 }

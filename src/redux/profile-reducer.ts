@@ -1,7 +1,7 @@
-import {PostType, ProfilePageDataType} from "../types/types";
-import {ActionsTypes, setUserProfile} from "../types/dispatchTypes";
-import {AppDispatchType} from "./redux-store";
-import {usersAPI} from "../api/api";
+import {AuthType, PostType, ProfilePageDataType} from "../types/types";
+import {ActionsTypes, setUserProfile, setUserStatus} from "../types/dispatchTypes";
+import {AppDispatchType, AppStateType} from "./redux-store";
+import {profileAPI, usersAPI} from "../api/api";
 
 let profileInitialState: ProfilePageDataType = {
     posts: [
@@ -11,7 +11,8 @@ let profileInitialState: ProfilePageDataType = {
         {id: 4, message: 'Dada', likesCount: 11}
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state: ProfilePageDataType = profileInitialState, action: ActionsTypes): ProfilePageDataType => {
@@ -33,9 +34,11 @@ const profileReducer = (state: ProfilePageDataType = profileInitialState, action
             }
         case "CHANGE-NEW-TEXT":
             return {...state, newPostText: action.postText}
-        case "SET-USER-PROFILE": {
+        case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
-        }
+        case "SET-USER-STATUS":
+            debugger
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -43,11 +46,25 @@ const profileReducer = (state: ProfilePageDataType = profileInitialState, action
 
 export default profileReducer
 
-export const getUserProfileTC = (userId: string) => (dispatch: AppDispatchType) => {
-    debugger
-    userId = userId ? userId : '2';
+export const getUserProfileTC = (userId: string) => (dispatch: AppDispatchType, getState: () => AppStateType) => {
     usersAPI.getProfile(userId)
         .then(response => {
             dispatch(setUserProfile(response))
+        })
+}
+
+export const getUserStatus = (userId: string) => (dispatch: AppDispatchType) => {
+    profileAPI.getStatus(userId)
+        .then(response => {
+            debugger
+            dispatch(setUserStatus(response))
+        })
+}
+
+export const updateUserStatus = (status: string) => (dispatch: AppDispatchType) => {
+    profileAPI.updateStatus(status)
+        .then(ignore => {
+            debugger
+            dispatch(setUserStatus(status))
         })
 }

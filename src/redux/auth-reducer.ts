@@ -1,7 +1,7 @@
 import {AuthType} from "../types/types";
 import {ActionsTypes, setAuthUserData} from "../types/dispatchTypes";
 import {AppDispatchType} from "./redux-store";
-import {usersAPI} from "../api/api";
+import {authAPI} from "../api/api";
 
 let initialState: AuthType = {
     data:
@@ -10,7 +10,7 @@ let initialState: AuthType = {
             login: '',
             email: '',
         },
-    isAuth: false,
+    isAuth: true,
     messages: [],
     fieldsErrors: [],
     resultCode: 0,
@@ -30,7 +30,7 @@ export const authReducer = (state: AuthType = initialState, action: ActionsTypes
 }
 
 export const getAuthUserDataTC = () => (dispatch: AppDispatchType) => {
-    usersAPI.getAuth()
+    authAPI.getAuth()
         .then(response => {
             if (response.resultCode === 0) {
                 let {id, login, email} = response.data

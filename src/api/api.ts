@@ -21,12 +21,36 @@ export const usersAPI = {
             .then(response => response.data.resultCode)
             .catch(e => console.log('unfoooo'))
     },
-    getAuth: () => {
-        return instance.get(`auth/me`)
-            .then(response => response.data)
-    },
+    getProfile: (userId: string) => {
+        return profileAPI.getProfile(userId)
+    }
+}
+
+export const profileAPI = {
     getProfile: (userId: string) => {
         return instance.get(`profile/${userId}`)
             .then(response => response.data)
+    },
+    getStatus: (userId: string) => {
+        return instance.get(`profile/status/${userId}`)
+            .then(response => {
+                debugger
+                return response.data
+            })
+    },
+    updateStatus: (status: string) => {
+        return instance.put(`profile/status`, {status})
+            .then(response => {
+                return response.data
+            })
+    }
+}
+
+export const authAPI = {
+    getAuth: () => {
+        return instance.get(`auth/me`)
+            .then(response => {
+                return response.data
+            })
     }
 }
