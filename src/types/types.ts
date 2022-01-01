@@ -7,10 +7,8 @@ export type PostType = {
 
 export type ProfilePageDataType = {
     posts: Array<PostType>
-    newPostText: string
     profile: ProfileInfoType | null,
-    status: string,
-    userId?: string
+    status: string
 }
 
 export type ProfileInfoType = {
@@ -49,7 +47,6 @@ export type MessageType = {
 export type DialogsPageDataType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessageText: string
 }
 
 //--------------------------------UsersPageDaraType

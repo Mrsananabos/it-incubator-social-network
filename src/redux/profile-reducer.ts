@@ -10,7 +10,6 @@ let profileInitialState: ProfilePageDataType = {
         {id: 3, message: 'Blabla', likesCount: 11},
         {id: 4, message: 'Dada', likesCount: 11}
     ],
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -18,26 +17,22 @@ let profileInitialState: ProfilePageDataType = {
 const profileReducer = (state: ProfilePageDataType = profileInitialState, action: ActionsTypes): ProfilePageDataType => {
     switch (action.type) {
         case "ADD-POST":
-            if (state.newPostText.trim() !== '') {
+            if (action.newPost !== '') {
                 const newPost: PostType = {
                     id: state.posts.length + 1,
-                    message: state.newPostText,
+                    message: action.newPost,
                     likesCount: 0
                 }
                 return {
                     ...state,
-                    posts: [...state.posts, newPost],
-                    newPostText: ''
+                    posts: [...state.posts, newPost]
                 }
             } else {
                 return state
             }
-        case "CHANGE-NEW-TEXT":
-            return {...state, newPostText: action.postText}
         case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
         case "SET-USER-STATUS":
-            debugger
             return {...state, status: action.status}
         default:
             return state
@@ -56,7 +51,6 @@ export const getUserProfileTC = (userId: string) => (dispatch: AppDispatchType, 
 export const getUserStatus = (userId: string) => (dispatch: AppDispatchType) => {
     profileAPI.getStatus(userId)
         .then(response => {
-            debugger
             dispatch(setUserStatus(response))
         })
 }
@@ -64,7 +58,6 @@ export const getUserStatus = (userId: string) => (dispatch: AppDispatchType) => 
 export const updateUserStatus = (status: string) => (dispatch: AppDispatchType) => {
     profileAPI.updateStatus(status)
         .then(ignore => {
-            debugger
             dispatch(setUserStatus(status))
         })
 }

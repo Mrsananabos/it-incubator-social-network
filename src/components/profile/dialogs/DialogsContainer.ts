@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import Dialogs from "./Dialogs";
 import {AppStateType} from "../../../redux/redux-store";
-import {addNewMessage, changeNewMessage} from "../../../types/dispatchTypes";
+import {addNewMessage} from "../../../types/dispatchTypes";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import React from "react";
@@ -13,7 +13,7 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-const connector = connect(mapStateToProps, {addNewMessage, changeNewMessage})
+const connector = connect(mapStateToProps, {addNewMessage})
 
 export default compose<React.ComponentType>(
     connector,

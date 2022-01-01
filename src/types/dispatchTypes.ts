@@ -1,16 +1,10 @@
 import {ProfileInfoType, UserType} from "./types"
 
 //--------------------------------ProfilePageDataType
-export const addPost = () => {
+export const addPost = (newPost: string) => {
     return {
-        type: "ADD-POST"
-    } as const
-}
-
-export const changeNewText = (newPostText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        postText: newPostText
+        type: "ADD-POST",
+        newPost
     } as const
 }
 
@@ -36,16 +30,10 @@ export const setUserId = (userId: string) => {
 }
 
 //--------------------------------DialogsPageDataType
-export const addNewMessage = () => {
+export const addNewMessage = (message: string) => {
     return {
-        type: "ADD-MESSAGE"
-    } as const
-}
-
-export const changeNewMessage = (newMessageText: string) => {
-    return {
-        type: "CHANGE-NEW-MESSAGE",
-        messageText: newMessageText
+        type: "ADD-MESSAGE",
+        message
     } as const
 }
 
@@ -113,8 +101,6 @@ export const setAuthUserData = (id: string, login: string, email: string) => {
 }
 
 export type ActionsTypes = ReturnType<typeof addPost>
-    | ReturnType<typeof changeNewText>
-    | ReturnType<typeof changeNewMessage>
     | ReturnType<typeof addNewMessage>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setTotalUsersCount>

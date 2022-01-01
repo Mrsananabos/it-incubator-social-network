@@ -16,28 +16,24 @@ let dialogsInitialState: DialogsPageDataType = {
         {id: 3, message: 'I like you'},
         {id: 4, message: 'When will we meet?'},
         {id: 5, message: 'Have a nice summer?'}
-    ],
-    newMessageText: ''
+    ]
 }
 
 const dialogsReducer = (state: DialogsPageDataType = dialogsInitialState, action: ActionsTypes): DialogsPageDataType => {
     switch (action.type) {
         case "ADD-MESSAGE":
-            if (state.newMessageText.trim() !== '') {
+            if (action.message.trim() !== '') {
                 const newMessage: MessageType = {
                     id: state.dialogs.length + 1,
-                    message: state.newMessageText
+                    message: action.message
                 }
                 return {
                     ...state,
-                    messages: [...state.messages, newMessage],
-                    newMessageText: ''
+                    messages: [...state.messages, newMessage]
                 }
             } else {
                 return state;
             }
-        case "CHANGE-NEW-MESSAGE":
-            return {...state, newMessageText: action.messageText}
         default:
             return state
     }

@@ -10,13 +10,13 @@ const ProfileContainer = (props: ProfileContainerWithRoutePropsType) => {
    type TypeUserParams = {
        userId: string;
    }
-   debugger
+
     const userId = useParams<TypeUserParams>().userId;
 
     useEffect(() => {
         props.getUserProfileTC(userId)
         props.getUserStatus(userId)
-    }, [])
+    }, [userId])
 
     return <Profile profile={props.profile} status={props.status} updateStatus={props.updateUserStatus}/>
 
