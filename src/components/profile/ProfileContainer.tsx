@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect, ConnectedProps} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import Profile from "./Profile";
-import {RouteComponentProps, useParams, withRouter} from 'react-router-dom';
+import {Redirect, RouteComponentProps, useParams, withRouter} from 'react-router-dom';
 import {getUserProfileTC, getUserStatus, updateUserStatus} from "../../redux/profile-reducer";
 import {compose} from "redux";
 
@@ -18,6 +18,10 @@ const ProfileContainer = (props: ProfileContainerWithRoutePropsType) => {
         props.getUserStatus(userId)
     }, [userId])
 
+    if (!props.isAuth) {
+        return <Redirect to={`/login`}/>
+    }
+
     return <Profile profile={props.profile} status={props.status} updateStatus={props.updateUserStatus}/>
 
 }
@@ -25,6 +29,7 @@ const mapStateToProps = (state: AppStateType) => {
     return {
         profile: state.profileReducer.profile,
         status: state.profileReducer.status,
+        isAuth: state.authReducer.isAuth
     }
 }
 

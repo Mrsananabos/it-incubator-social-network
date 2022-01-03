@@ -3,6 +3,8 @@ import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
 import {DialogsPageDataType} from "../../../types/types";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {TextArea} from "../../../common/formsControlls/FormController";
+import {maxFieldLength30, requiredField} from "../../../utils/validators/validators";
 
 type PropsDialogItem = {
     id: number
@@ -64,7 +66,7 @@ const Dialogs = (props: DialogsPropsType) => {
         return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field component={"textarea"} name={"newMessageBody"} placeholder={"type your message"}/>
+                    <Field component={TextArea} name={"newMessageBody"} placeholder={"type your message"} validate={[requiredField, maxFieldLength30]}/>
                 </div>
                 <div>
                     <button>Send</button>

@@ -14,12 +14,12 @@ export const usersAPI = {
     followUser: (id: number) => {
         return instance.post(`follow/${id}`,)
             .then(response => response.data.resultCode)
-            .catch(e => console.log('fooo'))
+            .catch(e => console.log(`error while follow user with id ${id}`))
     },
     unfollowUser: (id: number) => {
         return instance.delete(`follow/${id}`,)
             .then(response => response.data.resultCode)
-            .catch(e => console.log('unfoooo'))
+            .catch(e => console.log(`error while unfollow user with id ${id}`))
     },
     getProfile: (userId: string) => {
         return profileAPI.getProfile(userId)
@@ -33,23 +33,26 @@ export const profileAPI = {
     },
     getStatus: (userId: string) => {
         return instance.get(`profile/status/${userId}`)
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
     },
     updateStatus: (status: string) => {
         return instance.put(`profile/status`, {status})
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
     }
 }
 
 export const authAPI = {
     getAuth: () => {
         return instance.get(`auth/me`)
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
+    },
+
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post(`auth/login`, { email, password, rememberMe })
+            .then(response => response.data)
+    },
+
+    logout() {
+        return instance.delete(`auth/login`)
     }
 }

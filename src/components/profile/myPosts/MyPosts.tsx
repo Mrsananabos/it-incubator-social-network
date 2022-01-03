@@ -1,8 +1,10 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import Post from "./post/Post";
 import s from "./MyPosts.module.css"
 import {PostType} from "../../../types/types";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxFieldLength30, requiredField} from "../../../utils/validators/validators";
+import {TextArea} from "../../../common/formsControlls/FormController";
 
 type MyPostsPropsType = {
     posts: Array<PostType>
@@ -41,7 +43,8 @@ function AddPostForm(props: InjectedFormProps<DialogsNewMessageFormType>) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={"textarea"} name={"newPostBody"} placeholder={"Enter your post"}/>
+                <Field component={TextArea} name={"newPostBody"} placeholder={"Enter your post"}
+                       validate={[requiredField, maxFieldLength30]}/>
             </div>
             <div>
                 <button>Send</button>

@@ -89,13 +89,14 @@ export const unfollow = (userId: number) => {
 }
 
 //--------------------------------------Auth
-export const setAuthUserData = (id: string, login: string, email: string) => {
+export const setAuthUserData = (id: number, login: string, email: string, isAuth: boolean) => {
     return {
         type: "SET-USER-DATA",
         data: {
             id,
             login,
-            email
+            email,
+            isAuth
         }
     } as const
 }

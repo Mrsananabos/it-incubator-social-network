@@ -1,20 +1,30 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Input} from "../../common/formsControlls/FormController";
+import {requiredField} from "../../utils/validators/validators";
+import {connect, ConnectedProps, useSelector} from "react-redux";
+import {loginTC} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {reduxForm, Field, InjectedFormProps} from "redux-form";
+import {Redirect} from "react-router-dom";
+import classes from './Login.module.css'
 
 type FormDataType = {
     login: string
     password: string
-    rememberMe: string
+    rememberMe: boolean
 }
-export function Login() {
-    //
-    // const authIndicator = useSelector<AppStateType, boolean>(state => state.authData.isAuth)
-    // const loginString = useSelector<AppStateType, string>(state => state.authData.data.login)
+
+function Login(props: LoginPropsType) {
+    const authIndicator = useSelector<AppStateType, boolean>(state => state.authReducer.isAuth)
+    const userId = useSelector<AppStateType, number>(state => state.authReducer.data.id)
+
+    if (authIndicator) {
+        return <Redirect to={`/profile/${userId}`}/>
+    }
 
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        let {login, password, rememberMe} = formData
+        props.loginTC(login, password, rememberMe)
     }
 
     return (
@@ -33,17 +43,26 @@ function LoginForm(props: InjectedFormProps<FormDataType>) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'} name={'login'} component={'input'}/>
+                <Field placeholder={'Login'} name={'login'} component={Input} validate={[requiredField]}/>
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={'input'}/>
+                <Field placeholder={'Password'} name={'password'} type={'password'} component={Input}
+                       validate={[requiredField]}/>
             </div>
             <div>
-                <Field placeholder={'remember me'} component={'input'} name={'rememberMe'} type={'checkbox'}/>remember me
+                <Field placeholder={'remember me'} component={Input} name={'rememberMe'} type={'checkbox'}/>Remember me
             </div>
+            {props.error
+                ? <div className={classes.error}>{props.error}</div>
+                : <span></span>
+            }
             <div>
                 <button>Login</button>
             </div>
         </form>
     )
 }
+
+const connector = connect(null, {loginTC})
+type LoginPropsType = ConnectedProps<typeof connector>;
+export default connector(Login);
